@@ -11,7 +11,7 @@ class Orbit_point():
         self.x_screen = x_screen
         self.y_screen = y_screen
 
-        def polar-to_abs(r,phi)
+        def polar_to_abs(r,phi)
             __x = r * math.cos(phi)
             __y = r * math.sin()
             return __x, __y
