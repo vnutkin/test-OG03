@@ -1,5 +1,5 @@
 import math
-class Orbit_point():
+class Orbit_point:
     def __init__(self,r_planet,h_orbit,phi,x_abs,y_abs,width_screen,heigth_screen,x_screen,y_screen):
         self.r_planet = r_planet
         self.h_orbit = h_orbit
@@ -11,7 +11,7 @@ class Orbit_point():
         self.x_screen = x_screen
         self.y_screen = y_screen
 
-        def polar_to_abs(r,phi)
+        def polar_to_abs(r,phi):
             __x = r * math.cos(phi)
             __y = r * math.sin()
             return __x, __y
