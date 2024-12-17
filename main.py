@@ -25,7 +25,16 @@ class Orbit_point:
     def abs_to_scr(self,x, y):
         __x = int((x - x_0)* self.mash_x)
         __y = int((y - y_0) / self.mash_y)
-        if __y > int(elf.heigth_screen * frac_y) :
+        if __y >= int(self.heigth_screen * self.frac_y) :
             self.mash_y = float(self.mash_y / self.mash_k_times)
             self.mash_x = float(self.mash_x / self.mash_k_times)
+            self.y_0 = y
+            if __x <= self.width_screen // 2:
+                self.x_0 = x + (self.width_screen // 2) * self.mash_x
+        if __x >= self.width_screen :
+            self.x_0 = x
+        return __x, __y
+    def set_init_point(self):
+        self.x_0 = 0
+        self.y_0 = self.h_orbit
 
