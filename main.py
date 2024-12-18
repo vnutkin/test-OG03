@@ -1,4 +1,17 @@
+
 import math
+import pygame
+import random
+import sys
+WIDTH = 1200
+HEIGHT = 800
+FPS = 30
+# Создаем игру и окно
+pygame.init()
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Игра Тир")
+clock = pygame.time.Clock()
+
 class Orbit_point:
     def __init__(self,r_planet,h_orbit,phi,x_abs,y_abs,width_screen,heigth_screen,x_screen,y_screen,frac_y,mash_k_times):
         self.r_planet = r_planet
@@ -38,3 +51,9 @@ class Orbit_point:
         self.x_0 = 0
         self.y_0 = self.h_orbit
 
+class Dinamic_object:
+    def __init__(self,massa,fuel,coef_force):
+        self.massa = massa
+        self.fuel = fuel
+        self.coef_force = coef_force
+    def dif_eqv(self,time,fuel_cons,(r,vr,phi,vphi)):
