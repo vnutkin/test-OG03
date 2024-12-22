@@ -9,7 +9,7 @@ FPS = 30
 # Создаем игру и окно
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Игра Тир")
+pygame.display.set_caption('Игра Тир')
 clock = pygame.time.Clock()
 
 class Orbit_point:
@@ -30,14 +30,14 @@ class Orbit_point:
         self.y_0 = h_orbit
         self.x_0 = 0
 
-    def polar_to_abs(r,phi):
-        __x = r * math.cos(phi)
-        __y = r * math.sin()
+    def polar_to_abs(self,r,phi):
+        __x = float(r) * math.cos(phi)
+        __y = float(r) * math.sin(phi)
         return __x, __y
 
     def abs_to_scr(self,x, y):
-        __x = int((x - x_0)* self.mash_x)
-        __y = int((y - y_0) / self.mash_y)
+        __x = int((x - self.x_0)* self.mash_x)
+        __y = int((y - self.y_0) / self.mash_y)
         if __y >= int(self.heigth_screen * self.frac_y) :
             self.mash_y = float(self.mash_y / self.mash_k_times)
             self.mash_x = float(self.mash_x / self.mash_k_times)
@@ -52,8 +52,16 @@ class Orbit_point:
         self.y_0 = self.h_orbit
 
 class Dinamic_object:
-    def __init__(self,massa,fuel,coef_force):
+    def __init__(self,massa,fuel,gas_flow_rate):
         self.massa = massa
         self.fuel = fuel
-        self.coef_force = coef_force
-    def dif_eqv(self,time,fuel_cons,(r,vr,phi,vphi)):
+        self.gas_flow_rate = gas_flow_rate
+    def dif_eqv(self,time,fuel_cons,vector_x,vector_dx):
+    #     r, vr, phi, vphi, fuel
+        r = vector_x(0)
+        vr = vector_x(1)
+        phi = vector_x(2)
+        vphi = vector_x(3)
+        fuel = vector_x(4)
+        dfuel = -fuel_cons
+    #    dr, dvr, dphi, dvphi, dfuel
