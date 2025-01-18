@@ -29,8 +29,8 @@ class Orbit_point:
         self.frac_y = frac_y
         self.mash_k_times = mash_k_times
         self.time_acceleration_factor = time_acceleration_factor
-        self.mash_x = float(width_screen / h_orbit * self.frac_x)
-        self.mash_y = float(height_screen/h_orbit)
+        self.mash_x = float(width_screen / (self.g_planet+h_orbit) * self.frac_x)
+        self.mash_y = float(height_screen/(self.g_planet+h_orbit))
         self.x_0 = 0.0
         self.y_0 = self.r_planet + self.h_orbit
         self.width_x = int(self.width_screen * self.frac_x)
@@ -86,16 +86,13 @@ class Dinamic_object:
         dfuel = -fuel_cons
         dr = vr
         vt = float(vphi * r_h)
-        if vr == 0.0:
-            alpha = math.pi / 2
-        else:
-            alpha = math.atan(math.fabs(vt / vr))
+        alpha = math.atan2(vr , vt)
         engine_power = fuel_cons * self.gas_flow_rate
-        engine_power_n = engine_power * math.cos(alpha)
-        engine_power_t = engine_power * math.sin(alpha)
-        dvr = vt * vt / r_h - g_planet - engine_power_n / (self.massa + fuel)
+        engine_power_n = engine_power * math.sin(alpha)
+        engine_power_t = engine_power * math.cos(alpha)
+        dvr = vt * vt / r_h - g_planet + engine_power_n / (self.massa + fuel)
         dphi = vphi
-        dvphi = - engine_power_t / (r_h * (self.massa + fuel))
+        dvphi =  engine_power_t / (r_h * (self.massa + fuel))
         #    dr, dvr, dphi, dvphi, dfuel
         return [dr,dvr,dphi,dvphi,dfuel]
 orbit_point = Orbit_point(1737400.0,100000.0,1.625,WIDTH,HEIGHT,0.8,0.7,5,1)
