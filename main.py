@@ -29,8 +29,8 @@ class Orbit_point:
         self.frac_y = frac_y
         self.mash_k_times = mash_k_times
         self.time_acceleration_factor = time_acceleration_factor
-        self.mash_x = float(width_screen / (self.g_planet+h_orbit) * self.frac_x)
-        self.mash_y = float(height_screen/(self.g_planet+h_orbit))
+        self.mash_x = float(width_screen / (h_orbit) * self.frac_x)
+        self.mash_y = float(height_screen/(h_orbit))*1000
         self.x_0 = 0.0
         self.y_0 = self.r_planet + self.h_orbit
         self.width_x = int(self.width_screen * self.frac_x)
@@ -48,8 +48,8 @@ class Orbit_point:
             if __x <= self.width_x // 2:
                 self.x_0 =  (self.width_x // 2) * self.mash_x
         if __x >= int(self.width_screen * self.frac_x):
-            self.x_0 = 0.0
-            self.y_0 = r
+            self.x_0 = __xa #0.0
+            self.y_0 = __ya #r
         return __x + self.beg_x, __y
 
     def abs_to_scr(self,x, y):
